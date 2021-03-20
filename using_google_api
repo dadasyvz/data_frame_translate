@@ -1,0 +1,15 @@
+# pip install google_trans_new
+
+def translate(t):
+    translator = google_translator()
+    translate_text = translator.translate(t,lang_tgt='en')
+    return translate_text
+    
+def translate_column(df, c):
+    # df dataframe
+    # c column name
+    for i in range(len(df[c])):
+        if type(df[c].loc[i]) != str:
+            continue
+        new_translate = translate(df[c].loc[i])
+        df[c].loc[i] = new_translate    
